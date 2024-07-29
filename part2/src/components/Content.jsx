@@ -1,7 +1,9 @@
 import Form from "./Form";
 
 const Content = ({
+  persons,
   addPerson,
+  removePerson,
   newName,
   handleNameChange,
   handleNumberChange,
@@ -18,6 +20,17 @@ const Content = ({
         handleNumberChange={handleNumberChange}
         newNumber={newNumber}
       />
+      <div>
+        <h2>Numbers</h2>
+        {persons.map((person) => (
+          <div key={person.id}>
+            <p>
+              {person.name} {person.number}
+            </p>
+            <button onClick={() => removePerson(person.id)}>delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
