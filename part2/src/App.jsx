@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Content from "./components/Content";
 import personsService from "./services/personsService";
 
@@ -12,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     console.log("effect");
-    axios.get("/api/persons").then((response) => {
+    personsService.getAll.then((response) => {
       console.log(response.data);
       setPersons(response.data);
     });
