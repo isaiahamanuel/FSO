@@ -12,8 +12,8 @@ const App = () => {
   useEffect(() => {
     console.log("effect");
     personsService.getAll().then((response) => {
-      console.log(response.data);
-      setPersons(response.data);
+      console.log(response);
+      setPersons(response);
     });
   }, []);
 

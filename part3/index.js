@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const app = express();
+
+app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.static("dist"));
@@ -61,14 +63,14 @@ app.delete("/api/persons/:id", (request, response) => {
 });
 
 app.post("/api/persons", (request, response) => {
-  const body = request.body;
-  if (!body.name || !body.number) {
+  console.log(request.body);
+  if (!request.body.name || !request.body.number) {
     return response.status(400).json({ error: "name or number missing" });
   }
   const person = {
     id: Math.floor(Math.random() * 10000),
-    name: body.name,
-    number: body.number,
+    name: request.body.name,
+    number: Number(request.body.number),
   };
   const exists = persons.find((p) => p.name === person.name);
   if (exists) {
